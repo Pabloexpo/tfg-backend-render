@@ -192,7 +192,7 @@ class EquipoJugadorController extends Controller {
     //Funcion para obtener los equipos que no han cesado su actividad
     public function getEquipos($equipo_id) {
         //Tenemos que pasar el id del equipo para evitar la posibilidad de elegir enfrentarnos a nosotros mismos
-        
+
         $equipos = DB::select("SELECT *
     FROM equipos
     WHERE equipo_fec_cese IS NULL
@@ -203,23 +203,24 @@ class EquipoJugadorController extends Controller {
                     "equipos" => $equipos
         ]);
     }
+
     //Función para consultar el nombre de un equipo por su id
-    function getEquipoNombre($equipo_id){
-        $equipo  = Equipo::find($equipo_id);
-        
+    function getEquipoNombre($equipo_id) {
+        $equipo = Equipo::find($equipo_id);
+
         return response()->json([
-            "mensaje" => "Nombre del equipo solicitado", 
-            "equipo" => $equipo
+                    "mensaje" => "Nombre del equipo solicitado",
+                    "equipo" => $equipo
         ]);
     }
-    
+
     //Funcion para recibir las personas que solamente son árbitros
-    public function getArbitros (){
-        $arbitros = DB::select("SELECT * FROM personas p where persona_rol = 3"); 
-        
+    public function getArbitros() {
+        $arbitros = DB::select("SELECT * FROM personas p where persona_rol = 3");
+
         return response()->json([
-            "mensaje"=>"Listado de arbitros",
-            "arbitros" => $arbitros
+                    "mensaje" => "Listado de arbitros",
+                    "arbitros" => $arbitros
         ]);
     }
 
@@ -255,28 +256,40 @@ class EquipoJugadorController extends Controller {
         $peticion->save();
         return response()->json(['Mensaje' => 'Petición aceptada exitosamente.'], 200);
     }
+
     //Ahora tenemos que hacer la parte contraria, rechazar una petición de cese 
-    public function rechazaPeticion($peticion_id){
+    public function rechazaPeticion($peticion_id) {
         //Como se rechaza, no necesitamos el id del equipo esta vez
-        $peticion= Peticion::find($peticion_id); 
-        $peticion->peticion_estado= 'Rechazada'; 
-        $peticion->save(); 
+        $peticion = Peticion::find($peticion_id);
+        $peticion->peticion_estado = 'Rechazada';
+        $peticion->save();
         return response()->json(['Mensaje' => 'La petición ha sido rechazada correctamente'], 200);
     }
-    
+
     //Realizamos una función para ver las pistas utilizadas por un equipo históricamente
-    public function getPistasUtilizadas ($equipo_id){
+    public function getPistasUtilizadas($equipo_id) {
         $pistas_utilizadas = DB::select("SELECT pi.pista_nombre, COUNT(p.partido_id) as cantidad
     FROM partidos p 
     JOIN pistas pi on pi.pista_id=p.partido_pista
     WHERE p.partido_equ_1=$equipo_id or p.partido_equ_2=$equipo_id
     GROUP BY pi.pista_nombre ORDER BY cantidad desc");
-        
+
         return response()->json([
-            "mensaje"=>"Pistas más utilizadas por el equipo pedido", 
-            "pistas_utilizadas"=>$pistas_utilizadas
+                    "mensaje" => "Pistas más utilizadas por el equipo pedido",
+                    "pistas_utilizadas" => $pistas_utilizadas
         ]);
     }
-    
 
+    public function getJugadoresEquipo($equipo_id) {
+        $jugadores = DB::select("SELECT p.persona_nombre AS jugadores
+        FROM equipos e
+        JOIN personas p
+          ON p.persona_id IN (e.equipo_jug_1, e.equipo_jug_2)
+        WHERE p.persona_id IN (e.equipo_jug_1, e.equipo_jug_2)
+        AND e.equipo_id=$equipo_id");
+        
+        return response()->json(
+                $jugadores
+        );
+    }
 }

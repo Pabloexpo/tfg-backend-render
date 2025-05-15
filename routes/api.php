@@ -106,4 +106,11 @@ Route::get('/getProximosPartidos', [PartidosController::class, 'getProximosParti
 //Ruta para partidos arbitrados por una persona
 Route::get('/getPartidosArbitro/{persona_id}', [PartidosController::class, 'getPartidosArbitro']);
 //Recogemos el nombre de un equipo por su id
+
 Route::get('/getEquipoNombre/{equipo_id}', [EquipoJugadorController::class, 'getEquipoNombre']);
+
+//Ruta para obtener los jugadores de un equipo
+Route::get('/getJugadoresEquipo/{equipo_id}', [EquipoJugadorController::class, 'getJugadoresEquipo']);
+
+
+
