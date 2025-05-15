@@ -50,21 +50,16 @@ class EquipoJugadorController extends Controller {
             'persona_pwd' => 'nullable|string',
             'pwd_actual' => 'nullable|string'
         ]);
-
         //Encontramos al jugador
         $jugador = Persona::find($id);
-
         if (!$jugador) {
             return response()->json(['message' => 'No se encuentra al jugador'], 404);
         }
-
         //Actualizamos los datos en caso de encontrar al jugador
         //Actualizamos los campos si están presentes
         if (isset($validacion['persona_nombre'])) {
-
             $jugador->persona_nombre = $validacion['persona_nombre'];
         }
-
         if (!empty($validacion['persona_pwd'])) {
             //Comprobamos si la contraseña es la correcta
             if (!Hash::check($validacion['pwd_actual'], $jugador->persona_pwd)) {
@@ -77,7 +72,6 @@ class EquipoJugadorController extends Controller {
         }
 
         $jugador->save();
-
         return response()->json([
                     'message' => 'Datos del jugador actualizados',
                     'jugador' => [
@@ -105,9 +99,6 @@ class EquipoJugadorController extends Controller {
                     'message' => 'Usuario creado correctamente',
                     'data' => $persona
                         ], 201);
-//        ->header('Access-Control-Allow-Origin', '*')
-//        ->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
-//        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     }
 
     //Realizamos un endpoint para crear un equipo
