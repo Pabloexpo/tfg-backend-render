@@ -111,6 +111,6 @@ Route::get('/getEquipoNombre/{equipo_id}', [EquipoJugadorController::class, 'get
 
 //Ruta para obtener los jugadores de un equipo
 Route::get('/getJugadoresEquipo/{equipo_id}', [EquipoJugadorController::class, 'getJugadoresEquipo']);
-
-
+ //Ruta para mandar mensajes por parte del administrador
+Route::post('/respondeMensaje/{mensaje_id}', [MensajeController::class, 'respondeMensaje']); 
 
