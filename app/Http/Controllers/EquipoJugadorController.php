@@ -283,4 +283,21 @@ class EquipoJugadorController extends Controller {
                 $jugadores
         );
     }
+    
+    //Finalmente, hacemos un método para eliminar a la persona (NUNCA A UN ADMINISTRADOR)
+    public function deletePersona($persona_id){
+        $persona = Persona::find($persona_id); 
+        
+        if ($persona->persona_rol == 1){
+            return response()-> json([
+                "mensaje" => "No podemos eliminar a un usuario administrador", 
+                "persona" => $persona
+            ]);
+        } else {
+            $persona -> delete(); 
+            return response ()-> json("Usuario eliminado");
+        }
+        
+        
+    }
 }

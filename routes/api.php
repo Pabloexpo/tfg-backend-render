@@ -114,3 +114,5 @@ Route::get('/getJugadoresEquipo/{equipo_id}', [EquipoJugadorController::class, '
  //Ruta para mandar mensajes por parte del administrador
 Route::post('/respondeMensaje/{mensaje_id}', [MensajeController::class, 'respondeMensaje']); 
 
+//Ruta para borrar al usuario
+Route::delete('/deletePersona/{persona_id}', [EquipoJugadorController::class, 'deletePersona']);
