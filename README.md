@@ -32,6 +32,9 @@ composer install
 
 #Paso 5: importa el .sql el cual tendrás en (...decidir cómo vamos a compartir el .sql)
 
+#Paso 6: Copia el contenido de .env example en .env (cp .env example .env) y 
+#genera la clave de la aplicación con php artisan key:generate
+
 # Paso 6: Inicia el servidor de desarrollo para poder consumir las apis desde el frontend
 php artisan serve
 ```

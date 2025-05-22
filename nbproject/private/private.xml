@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/tfg-backend-pem.es/app/Http/Controllers/MensajeController.php</file>
+            <file>file:/var/www/tfg-backend-pem.es/README.md</file>
             <file>file:/var/www/tfg-backend-pem.es/.env</file>
             <file>file:/var/www/tfg-backend-pem.es/routes/api.php</file>
-            <file>file:/var/www/tfg-backend-pem.es/database/migrations/2025_04_10_185429_add_email_to_personas_table.php</file>
             <file>file:/var/www/tfg-backend-pem.es/app/Http/Controllers/EquipoJugadorController.php</file>
-            <file>file:/var/www/tfg-backend-pem.es/database/migrations/2025_05_19_170143_add_respuesta_to_mensajes_table.php</file>
         </group>
     </open-files>
 </project-private>
