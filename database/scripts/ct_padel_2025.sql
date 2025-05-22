@@ -26,6 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `equipos`
 --
+CREATE DATABASE IF NOT EXISTS ct_padel_2025;
+USE ct_padel_2025;
 
 CREATE TABLE `equipos` (
   `equipo_id` int UNSIGNED NOT NULL,
